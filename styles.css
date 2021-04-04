@@ -1,0 +1,24 @@
+.genre {
+  /* background-color: teal; */
+  margin: 0px;
+  font-weight: bold;
+}
+
+.level {
+  /* background-color: tomato; */
+  margin: 0px;
+  font-weight: bold;
+}
+
+.question {
+  border-top: solid 1px #898a89;
+  border-bottom: solid 1px #898a89;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  /* background-color: springgreen; */
+}
+
+button {
+  display: block;
+  margin-bottom: 5px;
+}
