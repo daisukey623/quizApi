@@ -15,15 +15,13 @@ const getStart = () => {
   getanswers[2].style.display = 'none';
   getanswers[3].style.display = 'none';
 
-  document.getElementById('startClick').addEventListener('click', (e) => {
+  document.getElementById('startClick').addEventListener('click', async (e) => {
     document.getElementById('startClick').removeAttribute('id');
     getanswers[0].style.display = 'none';
     waitApi();
-    getQuizArray();
+    await getQuizArray();
   });
 };
-
-
 
 // スタート後、非同期処理中の表示の関数
 const waitApi = () => {
@@ -47,26 +45,24 @@ const resetQuiz = () => {
   getanswers[2].style.display = 'none';
   getanswers[3].style.display = 'none';
 
-  document.getElementById('resetClick').addEventListener('click', (e) => {
+  document.getElementById('resetClick').addEventListener('click', async (e) => {
     document.getElementById('resetClick').removeAttribute('id');
     getanswers[0].style.display = 'none';
     console.log('idをとります');
     waitApi();
-    getQuizArray();
+    await getQuizArray();
   });
 };
 
 // クイズデータ取得
 const getQuizArray = async () => {
   const url = 'https://opentdb.com/api.php?amount=10';
-  const data = await fetch(url)
-    .then((res) => {
-      console.log('成功しました');
-      return res.json();
-    })
-    .catch((error) => {
-      console.log('失敗しました');
-    });
+  let data;
+  try {
+    data = await (await fetch(url)).json();
+  } catch (error) {
+    console.log(`失敗しました => {error}`);
+  }
 
   // クラス生成
   class Quiz {
